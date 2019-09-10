@@ -85,7 +85,7 @@ bool File::CloseFile() {
 }
 
 bool File::MoveLocation(Sint64 Offset, int Whence) {
-	SDL_RWseek(CurrentFile, Offset, Whence);
+	return SDL_RWseek(CurrentFile, Offset, Whence);
 }
 
 bool File::Read(void *ReadTo, int Size, int Amount) {
