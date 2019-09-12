@@ -120,3 +120,21 @@ bool File::Write(void *WriteFrom, int Size, int Amount) {
 std::string File::GetError() {
 	return CurrentError;
 }
+
+#define OpenFile(FileName, Mode, StanderdInfo, AmountOfInfo, InfoSize) OpenFile(FileName, Mode, StanderdInfo, AmountOfInfo, sizeof(InfoSize))
+#define Read(ReadTo, Size, Amount) Read(ReadTo, sizeof(Size), Amount)
+#define Write(WriteFrom, Size, Amount) Write(WriteFrom, sizeof(Size), Amount)
+
+std::string File::GetLine() {
+	std::string Result="";
+
+	char Temp;
+
+	do {
+		if(!this->Read(&Temp, char, 1)) {
+			Temp = '\n';
+		}
+		Result += Temp;
+	}
+	while(Temp != '\n');
+}

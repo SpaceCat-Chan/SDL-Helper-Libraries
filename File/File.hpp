@@ -37,6 +37,8 @@ class File {
 	bool Write(void* WriteFrom, int Size, int Amount);
 
 	std::string GetError();
+
+	std::string GetLine();
 };
 
 #ifndef FILE_CPP
