@@ -38,7 +38,7 @@ class File {
 
 	std::string GetError();
 
-	std::string GetLine();
+	bool GetLine(std::string &Into);
 };
 
 #ifndef FILE_CPP

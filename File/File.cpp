@@ -125,16 +125,22 @@ std::string File::GetError() {
 #define Read(ReadTo, Size, Amount) Read(ReadTo, sizeof(Size), Amount)
 #define Write(WriteFrom, Size, Amount) Write(WriteFrom, sizeof(Size), Amount)
 
-std::string File::GetLine() {
+bool File::GetLine(std::string &Into) {
 	std::string Result="";
 
 	char Temp;
 
+	bool Success=true;
+
 	do {
 		if(!this->Read(&Temp, char, 1)) {
 			Temp = '\n';
+			Success = false;
+
 		}
 		Result += Temp;
 	}
 	while(Temp != '\n');
+	Into = Result;
+	return Success;
 }
