@@ -1,8 +1,8 @@
 #include "Image.hpp"
 
 void Image::Free() {
-	if(ImageFile != nullptr) {
-		SDL_free(ImageFile);
+	if(ImageFile) {
+		SDL_DestroyTexture(ImageFile);
 		ImageFile = nullptr;
 		Width = 0;
 		Height = 0;
