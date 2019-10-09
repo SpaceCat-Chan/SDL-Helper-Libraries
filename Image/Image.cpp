@@ -1,7 +1,7 @@
 #include "Image.hpp"
 
 void Image::Free() {
-	if(ImageFile ~= nullptr) {
+	if(ImageFile != nullptr) {
 		SDL_free(ImageFile);
 		ImageFile = nullptr;
 		Width = 0;
