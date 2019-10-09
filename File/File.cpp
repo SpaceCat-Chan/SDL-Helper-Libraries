@@ -78,10 +78,10 @@ bool File::CloseFile() {
 		if(!SDL_RWclose(CurrentFile)) {
 			CurrentError = SDL_GetError();
 			CurrentFile = nullptr;
-			return false;
+			return true;
 		}
 	}
-	return true;
+	return false;
 }
 
 bool File::MoveLocation(Sint64 Offset, int Whence) {
