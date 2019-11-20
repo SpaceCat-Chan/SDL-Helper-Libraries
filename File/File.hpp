@@ -2,8 +2,8 @@
 
 #define FILE_HPP
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_filesystem.h>
+#include <SDL.h>
+#include <SDL_filesystem.h>
 
 #include <string>
 #include "../Profiler.cpp"
