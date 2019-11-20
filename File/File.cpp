@@ -13,6 +13,7 @@ File::~File() {
 }
 
 bool File::OpenFile(std::string FileName, int Mode, void *StanderdInfo, int AmountOfInfo, int InfoSize) {
+	ProfileFunction();
 	std::string OpenMode;
 	if(Mode & FileModes::Read) {
 		OpenMode += 'r';
@@ -89,6 +90,7 @@ bool File::MoveLocation(Sint64 Offset, int Whence) {
 }
 
 bool File::Read(void *ReadTo, int Size, int Amount) {
+	ProfileFunction();
 	if(CurrentFile) {
 		if(SDL_RWread(CurrentFile, ReadTo, Size, Amount) < Amount) {
 			CurrentError = SDL_GetError();
@@ -104,6 +106,7 @@ bool File::Read(void *ReadTo, int Size, int Amount) {
 }
 
 bool File::Write(void *WriteFrom, int Size, int Amount) {
+	ProfileFunction();
 	if(CurrentFile) {
 		if(SDL_RWwrite(CurrentFile, WriteFrom, Size, Amount) < Amount) {
 			CurrentError = SDL_GetError();
@@ -126,6 +129,7 @@ std::string File::GetError() {
 #define Write(WriteFrom, Size, Amount) Write(WriteFrom, sizeof(Size), Amount)
 
 bool File::GetLine(std::string &Into) {
+	ProfileFunction();
 	std::string Result="";
 
 	char Temp;

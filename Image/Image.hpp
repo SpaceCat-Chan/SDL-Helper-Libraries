@@ -7,6 +7,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 
+#include "../Profiler.cpp"
 class Image {
 	SDL_Texture* ImageFile;
 	int Width, Height;

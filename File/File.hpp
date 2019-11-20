@@ -6,6 +6,7 @@
 #include <SDL2/SDL_filesystem.h>
 
 #include <string>
+#include "../Profiler.cpp"
 
 namespace FileModes{
 	enum wawawa {

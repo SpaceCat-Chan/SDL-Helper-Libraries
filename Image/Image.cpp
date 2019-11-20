@@ -20,6 +20,7 @@ Image::~Image() {
 }
 
 bool Image::LoadImage(std::string Path, SDL_Renderer* Render) {
+	ProfileFunction();
 	Free();
 	SDL_Surface* TempImage = NULL;
 	SDL_Texture* OptimizedTemp = NULL;
@@ -46,6 +47,7 @@ bool Image::LoadImage(std::string Path, SDL_Renderer* Render) {
 }
 
 bool Image::LoadFromText(std::string Text, TTF_Font *Font, SDL_Renderer* Render, SDL_Color Color) {
+	ProfileFunction();
 	Free();
 	SDL_Surface* TempImage = NULL;
 	SDL_Texture* OptimizedTemp = NULL;
@@ -72,6 +74,9 @@ bool Image::LoadFromText(std::string Text, TTF_Font *Font, SDL_Renderer* Render,
 }
 
 void Image::Draw(int x, int y, SDL_Renderer* Render, SDL_Rect DST_Quad, SDL_Rect* clip, double Angle, SDL_Point* Center, SDL_RendererFlip Flip) {
+	#ifdef DeepDebug
+	ProfileFunction();
+	#endif
 	//Set rendering space and render to screen
 	if(this) {
 		SDL_Rect renderQuad = { x, y, Width, Height };
