@@ -27,7 +27,7 @@ class File {
 
 	~File();
 
-	bool OpenFile(std::string FileName, int Mode, void *StanderdInfo=nullptr, int AmountOfInfo=0, int InfoSize=0);
+	bool OpenFile(std::string FileName, int Mode, const void *StanderdInfo=nullptr, int AmountOfInfo=0, int InfoSize=0);
 
 	bool CloseFile();
 

@@ -12,7 +12,7 @@ File::~File() {
 	}
 }
 
-bool File::OpenFile(std::string FileName, int Mode, void *StanderdInfo, int AmountOfInfo, int InfoSize) {
+bool File::OpenFile(std::string FileName, int Mode, const void *StanderdInfo, int AmountOfInfo, int InfoSize) {
 	ProfileFunction();
 	std::string OpenMode;
 	if(Mode & FileModes::Read) {
