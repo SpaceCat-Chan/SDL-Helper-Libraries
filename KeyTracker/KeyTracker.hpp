@@ -24,6 +24,15 @@ class KeyTracker {
 	public:
 	KeyTracker();
 	~KeyTracker();
+	/*
+	Scancodes
+	*/
+	bool operator[](Uint32 Key);
+	
+	/*
+	Keycodes
+	*/
+	bool operator|(Uint32 Key);
 
 	void UpdateKey(SDL_Event *Key);
 	bool KeyClicked(Uint32 Key, Uint8 ScanOrKey=Scancode);

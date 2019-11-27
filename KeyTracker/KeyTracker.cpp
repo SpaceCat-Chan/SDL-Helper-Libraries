@@ -24,6 +24,14 @@ KeyTracker::KeyTracker() {
 KeyTracker::~KeyTracker() {
 }
 
+bool KeyTracker::operator[](Uint32 Key) {
+	return KeyClicked(Key, Scancode);
+}
+
+bool KeyTracker::operator|(Uint32 Key) {
+	return KeyClicked(Key, Keycode);
+}
+
 bool KeyTracker::KeyClicked(Uint32 Key, Uint8 ScanOrKey/*=Scancode*/) {
 	if(ScanOrKey == Keycode) {
 		Key = SDL_GetScancodeFromKey(Key);
