@@ -9,15 +9,18 @@
 
 #include "../Profiler.cpp"
 class Image {
-	SDL_Texture* ImageFile;
+	std::shared_ptr<SDL_Texture> ImageFile;
 	int Width, Height;
 	public:
 	void Free();
 
 	Image();
-
+	Image(Image &CopyImage);
+	Image(const Image &CopyImage);
 	~Image();
 
+	Image &operator=(Image &CopyImage);
+	Image &operator=(Image &&MoveImage);
 	/*
 	Loads and image
 	*/

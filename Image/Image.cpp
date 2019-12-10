@@ -1,12 +1,9 @@
 #include "Image.hpp"
 
 void Image::Free() {
-	if(ImageFile) {
-		SDL_DestroyTexture(ImageFile);
-		ImageFile = nullptr;
-		Width = 0;
-		Height = 0;
-	}
+	ImageFile.reset();
+	Width = 0;
+	Height = 0;
 }
 
 Image::Image() {
@@ -15,9 +12,36 @@ Image::Image() {
 	ImageFile = nullptr;
 }
 
+Image::Image(Image &CopyImage) {
+	Height = CopyImage.Height;
+	Width = CopyImage.Width;
+	ImageFile = CopyImage.ImageFile;
+}
+
+Image::Image(const Image &CopyImage) {
+	Height = CopyImage.Height;
+	Width = CopyImage.Width;
+	ImageFile = CopyImage.ImageFile;
+}
+
 Image::~Image() {
 	Free();
 }
+
+Image &Image::operator=(Image &CopyImage) {
+	Width = CopyImage.Width;
+	Height = CopyImage.Height;
+	ImageFile = CopyImage.ImageFile;
+	return *this;
+}
+
+Image &Image::operator=(Image &&CopyImage) {
+	Width = CopyImage.Width;
+	Height = CopyImage.Height;
+	ImageFile = std::move(CopyImage.ImageFile);
+	return *this;
+}
+
 
 bool Image::LoadImage(std::string Path, SDL_Renderer* Render) {
 	ProfileFunction();
@@ -39,7 +63,7 @@ bool Image::LoadImage(std::string Path, SDL_Renderer* Render) {
 		else {
 			Width = TempImage->w;
 			Height = TempImage->h;
-			ImageFile = OptimizedTemp;
+			ImageFile = std::shared_ptr<SDL_Texture>(OptimizedTemp, [](SDL_Texture *ptr) {SDL_DestroyTexture(ptr);});
 			SDL_FreeSurface(TempImage);
 			return true;
 		}
@@ -66,7 +90,7 @@ bool Image::LoadFromText(std::string Text, TTF_Font *Font, SDL_Renderer* Render,
 		else {
 			Width = TempImage->w;
 			Height = TempImage->h;
-			ImageFile = OptimizedTemp;
+			ImageFile = std::shared_ptr<SDL_Texture>(OptimizedTemp, [](SDL_Texture *ptr) {SDL_DestroyTexture(ptr);});
 			SDL_FreeSurface(TempImage);
 			return true;
 		}
@@ -92,7 +116,7 @@ void Image::Draw(int x, int y, SDL_Renderer* Render, SDL_Rect DST_Quad, SDL_Rect
 		renderQuad.h *= DST_Quad.h / 100.0;
 
 		//Render to screen
-		SDL_RenderCopyEx( Render, ImageFile, clip, &renderQuad, Angle, Center, Flip );
+		SDL_RenderCopyEx( Render, ImageFile.get(), clip, &renderQuad, Angle, Center, Flip );
 	}
 	else {
 		SDL_Log("ERROR, this = nullptr, unable to draw\n");
@@ -100,15 +124,15 @@ void Image::Draw(int x, int y, SDL_Renderer* Render, SDL_Rect DST_Quad, SDL_Rect
 }
 
 void Image::SetColor(long r, long g, long b) {
-	SDL_SetTextureColorMod(ImageFile, r, g, b);
+	SDL_SetTextureColorMod(ImageFile.get(), r, g, b);
 }
 
 void Image::SetAlpha(long a) {
-	SDL_SetTextureAlphaMod(ImageFile, a);
+	SDL_SetTextureAlphaMod(ImageFile.get(), a);
 }
 
 void Image::SetBlendMode(SDL_BlendMode BlendMode) {
-	SDL_SetTextureBlendMode(ImageFile, BlendMode);
+	SDL_SetTextureBlendMode(ImageFile.get(), BlendMode);
 }
 
 SDL_Rect Image::GetSize() {
