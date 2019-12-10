@@ -49,6 +49,9 @@ class Image {
 	SDL_Rect GetSize();
 
 	bool InsideImage(int DrawX, int DrawY, int CheckX, int CheckY);
+
+	bool operator==(const Image &rhs) const;
+	bool operator!=(const Image &rhs) const;
 };
 
 #endif

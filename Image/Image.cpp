@@ -145,3 +145,10 @@ SDL_Rect Image::GetSize() {
 bool Image::InsideImage(int DrawX, int DrawY, int CheckX, int CheckY) {
 	return CheckX > DrawX && CheckX < DrawX + Width && CheckY > DrawY && CheckY < DrawY + Height;
 }
+
+bool Image::operator==(const Image &rhs) const {
+	return rhs.Width == Width && Height == rhs.Height && ImageFile == rhs.ImageFile;
+}
+bool Image::operator!=(const Image &rhs) const {
+	return !(rhs.Width == Width && Height == rhs.Height && ImageFile == rhs.ImageFile);
+}
