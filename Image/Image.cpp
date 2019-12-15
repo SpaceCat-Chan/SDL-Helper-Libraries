@@ -35,6 +35,13 @@ Image &Image::operator=(Image &CopyImage) {
 	return *this;
 }
 
+Image &Image::operator=(const Image &CopyImage) {
+	Width = CopyImage.Width;
+	Height = CopyImage.Height;
+	ImageFile = CopyImage.ImageFile;
+	return *this;
+}
+
 Image &Image::operator=(Image &&CopyImage) {
 	Width = CopyImage.Width;
 	Height = CopyImage.Height;

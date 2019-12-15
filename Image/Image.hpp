@@ -20,6 +20,7 @@ class Image {
 	~Image();
 
 	Image &operator=(Image &CopyImage);
+	Image &operator=(const Image &CopyImage);
 	Image &operator=(Image &&MoveImage);
 	/*
 	Loads and image
