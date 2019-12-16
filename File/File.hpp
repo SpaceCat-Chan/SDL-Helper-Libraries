@@ -35,7 +35,7 @@ class File {
 
 	bool Read(void* ReadTo, int Size, int Amount);
 
-	bool Write(void* WriteFrom, int Size, int Amount);
+	bool Write(const void* WriteFrom, int Size, int Amount);
 
 	std::string GetError();
 

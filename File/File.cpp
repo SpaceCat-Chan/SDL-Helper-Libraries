@@ -105,7 +105,7 @@ bool File::Read(void *ReadTo, int Size, int Amount) {
 	return true;
 }
 
-bool File::Write(void *WriteFrom, int Size, int Amount) {
+bool File::Write(const void *WriteFrom, int Size, int Amount) {
 	ProfileFunction();
 	if(CurrentFile) {
 		if(SDL_RWwrite(CurrentFile, WriteFrom, Size, Amount) < Amount) {
