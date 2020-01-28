@@ -50,7 +50,6 @@ Uint32 KeyTracker::TimeSinceLastPress(Uint32 Key, Uint8 ScanOrKey/*=Scancode*/) 
 	if(ScanOrKey == Keycode) {
 		Key = SDL_GetScancodeFromKey(Key);
 	}
-	Uint8 Time;
 	if(KeyRepeating[Key]) {
 		return KeyPressLength[Key]-KeyRepeatList[Key].Delay;
 	}

@@ -109,25 +109,20 @@ void Image::Draw(int x, int y, SDL_Renderer* Render, SDL_Rect DST_Quad, SDL_Rect
 	ProfileFunction();
 	#endif
 	//Set rendering space and render to screen
-	if(this) {
-		SDL_Rect renderQuad = { x, y, Width, Height };
+	SDL_Rect renderQuad = { x, y, Width, Height };
 
-		//Set clip rendering dimensions
-		if( clip != NULL )
-		{
-			renderQuad.w = clip->w;
-			renderQuad.h = clip->h;
-		}
-
-		renderQuad.w *= DST_Quad.w / 100.0;
-		renderQuad.h *= DST_Quad.h / 100.0;
-
-		//Render to screen
-		SDL_RenderCopyEx( Render, ImageFile.get(), clip, &renderQuad, Angle, Center, Flip );
+	//Set clip rendering dimensions
+	if( clip != NULL )
+	{
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
 	}
-	else {
-		SDL_Log("ERROR, this = nullptr, unable to draw\n");
-	}
+
+	renderQuad.w *= DST_Quad.w / 100.0;
+	renderQuad.h *= DST_Quad.h / 100.0;
+
+	//Render to screen
+	SDL_RenderCopyEx( Render, ImageFile.get(), clip, &renderQuad, Angle, Center, Flip );
 }
 
 void Image::SetColor(long r, long g, long b) {
