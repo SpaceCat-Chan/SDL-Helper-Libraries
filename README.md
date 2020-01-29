@@ -42,7 +42,7 @@ example use:
 	}
 
 dependancies:
-* SDL
+* SDL2
 
 
 ## sfstream
@@ -52,4 +52,4 @@ supports:
 * almost everything that fstream supports
 
 dependancies:
-* SDL
+* SDL2
