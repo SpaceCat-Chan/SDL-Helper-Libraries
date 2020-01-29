@@ -51,5 +51,35 @@ a small wrapper on SDL_RWops that allows you to use it like an iostream
 supports:
 * almost everything that fstream supports
 
+example:
+
+	#include "sfstream/sfstream.hpp"
+
+	int main(int argc, char **argv) {
+		{
+			iosfstream Stream("Example.txt", "w+");
+			std::string Get;
+			std::cout << "write something\n";
+			getline(std::cin, Get);
+
+			std::cout << "you wrote: " << Get << '\n';
+
+			Stream << Get;
+		}
+		{
+			iosfstream Stream2("Example.txt", "r+");
+			std::string Get;
+			std::cout << "how far to seek?\n";
+			int SeekDist;
+			std::cin >> SeekDist;
+
+			Stream2.seekg(SeekDist);
+			getline(Stream2, Get);
+
+			std::cout << "Result: " << Get << '\n';
+		}
+	}
+
+
 dependancies:
 * SDL2
