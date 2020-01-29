@@ -119,3 +119,25 @@ void isfstream::open(SDL_RWops *File) {
 void isfstream::open(std::string Filename, std::string FileOptions) {
 	sfbuf::open(Filename, FileOptions);
 }
+
+
+osfstream::osfstream(SDL_RWops *File) : sfbuf(File), std::ostream(this) {}
+osfstream::osfstream(std::string Filename, std::string FileOptions) : sfbuf(Filename, FileOptions), std::ostream(this) {}
+
+void osfstream::open(SDL_RWops *File) {
+	sfbuf::open(File);
+}
+void osfstream::open(std::string Filename, std::string FileOptions) {
+	sfbuf::open(Filename, FileOptions);
+}
+
+
+iosfstream::iosfstream(SDL_RWops *File) : sfbuf(File), std::iostream(this) {}
+iosfstream::iosfstream(std::string Filename, std::string FileOptions) : sfbuf(Filename, FileOptions), std::iostream(this) {}
+
+void iosfstream::open(SDL_RWops *File) {
+	sfbuf::open(File);
+}
+void iosfstream::open(std::string Filename, std::string FileOptions) {
+	sfbuf::open(Filename, FileOptions);
+}

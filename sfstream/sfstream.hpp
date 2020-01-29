@@ -43,9 +43,18 @@ class isfstream : private sfbuf, public std::istream {
 };
 class osfstream : private sfbuf, public std::ostream {
 	public:
-	isfstream() = default;
-	explicit isfstream(SDL_RWops *File);
-	explicit isfstream(std::string Filename, std::string FileOptions);
+	osfstream() = default;
+	explicit osfstream(SDL_RWops *File);
+	explicit osfstream(std::string Filename, std::string FileOptions);
+	void open(SDL_RWops *File);
+	void open(std::string Filename, std::string FileOptions);
+};
+
+class iosfstream : private sfbuf, public std::iostream {
+	public:
+	iosfstream() = default;
+	explicit iosfstream(SDL_RWops *File);
+	explicit iosfstream(std::string Filename, std::string FileOptions);
 	void open(SDL_RWops *File);
 	void open(std::string Filename, std::string FileOptions);
 };
