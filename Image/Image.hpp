@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "../Profiler.cpp"
+#include "../Font/Font.hpp"
 class Image {
 	std::shared_ptr<SDL_Texture> ImageFile;
 	int Width, Height;
@@ -37,14 +38,13 @@ class Image {
 
 	Return: whether or not the function was successful
 	*/
+	bool LoadFromText(std::string Text, Font& FontToUse, SDL_Renderer* Render, SDL_Color Color);
 	bool LoadFromText(std::string Text, TTF_Font *Font, SDL_Renderer* Render, SDL_Color Color);
 
 	void Draw(int x, int y, SDL_Renderer* Render, SDL_Rect DST_Quad={0,0,100,100}, SDL_Rect* clip = nullptr, double Angle = 0.0, SDL_Point* Center = nullptr, SDL_RendererFlip Flip = SDL_FLIP_NONE);
 
 	void SetColor(long r, long g, long b);
-
 	void SetAlpha(long a);
-	
 	void SetBlendMode(SDL_BlendMode BlendMode);
 
 	SDL_Rect GetSize();
