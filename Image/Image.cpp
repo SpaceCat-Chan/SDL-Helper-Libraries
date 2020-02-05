@@ -143,14 +143,14 @@ void Image::SetBlendMode(SDL_BlendMode BlendMode) {
 	SDL_SetTextureBlendMode(ImageFile.get(), BlendMode);
 }
 
-SDL_Rect Image::GetSize() {
+SDL_Rect Image::GetSize() const {
 	SDL_Rect Return;
 	Return.w = Width;
 	Return.h = Height;
 	return Return;
 }
 
-bool Image::InsideImage(int DrawX, int DrawY, int CheckX, int CheckY) {
+bool Image::InsideImage(int DrawX, int DrawY, int CheckX, int CheckY) const {
 	return CheckX > DrawX && CheckX < DrawX + Width && CheckY > DrawY && CheckY < DrawY + Height;
 }
 

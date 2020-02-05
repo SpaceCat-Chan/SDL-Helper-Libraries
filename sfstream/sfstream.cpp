@@ -47,7 +47,7 @@ sfbuf::~sfbuf() {
 sfbuf::int_type sfbuf::sync() {
 	if(pptr() > pbase()) {
 		size_t AmountWritten = SDL_RWwrite(m_File, m_OBuffer, sizeof(char), pptr() - pbase());
-		if(AmountWritten < pptr() - pbase()) {
+		if(AmountWritten < size_t(pptr() - pbase())) {
 			std::cout << "sync failed, amount written: " << AmountWritten << ", SDL_Error: " << SDL_GetError() << '\n';
 			return -1;
 		}
@@ -94,6 +94,8 @@ std::streampos sfbuf::seekoff(std::streamoff off, std::ios::seekdir way, std::io
 		case std::ios::end:
 			whence = RW_SEEK_END;
 			break;
+		
+		default: break;
 	}
 	Sint64 pos = SDL_RWseek(m_File, off, whence);
 	if(pos == -1) {

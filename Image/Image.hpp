@@ -47,9 +47,9 @@ class Image {
 	void SetAlpha(long a);
 	void SetBlendMode(SDL_BlendMode BlendMode);
 
-	SDL_Rect GetSize();
+	SDL_Rect GetSize() const;
 
-	bool InsideImage(int DrawX, int DrawY, int CheckX, int CheckY);
+	bool InsideImage(int DrawX, int DrawY, int CheckX, int CheckY) const;
 
 	bool operator==(const Image &rhs) const;
 	bool operator!=(const Image &rhs) const;
