@@ -107,7 +107,7 @@ bool Image::LoadFromText(std::string Text, TTF_Font *Font, SDL_Renderer* Render,
 }
 
 bool Image::LoadFromText(std::string Text, Font& FontToUse, SDL_Renderer* Render, SDL_Color Color) {
-	LoadFromText(Text, FontToUse.Get(), Render, Color);
+	return LoadFromText(Text, FontToUse.Get(), Render, Color);
 }
 
 void Image::Draw(int x, int y, SDL_Renderer* Render, SDL_Rect DST_Quad, SDL_Rect* clip, double Angle, SDL_Point* Center, SDL_RendererFlip Flip) {
