@@ -36,7 +36,7 @@ example use:
 			Keyboard.UpdateKey(&Event_Handler);
 		}
     
-    	if(Keyboard[SDL_SCANCODE_UP]) {
+    	if(Keyboard[SDL_SCANCODE_UP].Clicked) {
     		std::cout << "you pressed the up button\n";
 		}
 	}

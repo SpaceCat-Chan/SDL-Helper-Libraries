@@ -13,35 +13,35 @@ enum {
 	Keycode
 };
 
+struct KeyInfo {
+	bool Clicked = false;
+	bool Active = false;
+	Uint32 PressLength = 0;
+	bool Repeating;
+	KeyRepeat Repeat;
+};
+
 class KeyTracker {
-	std::vector<bool> KeyClick;
-	std::vector<bool> KeyActive;
-	std::vector<Uint32> KeyPressLength;
-	std::vector<bool> KeyRepeating;
-	std::vector<KeyRepeat> KeyRepeatList;
+	std::vector<KeyInfo> Keys;
 	Uint16 AmountOfKeys=0;
 
 	public:
 	KeyTracker();
 	~KeyTracker();
+
 	/*
 	Scancodes
 	*/
-	bool operator[](Uint32 Key);
+	KeyInfo operator[](Uint32 Key);
 	
 	/*
 	Keycodes
 	*/
-	bool operator|(Uint32 Key);
+	KeyInfo operator()(Uint32 Key);
 
 	void UpdateKey(SDL_Event *Key);
-	bool KeyClicked(Uint32 Key, Uint8 ScanOrKey=Scancode);
-	bool IsPressed(Uint32 Key, Uint8 ScanOrKey=Scancode);
-	Uint32 TimeSinceLastPress(Uint32 Key, Uint8 ScanOrKey=Scancode);
 
 	void SetRepeat(Uint32 Key, KeyRepeat RepeatInfo, Uint8 ScanOrKey=Scancode);
-	KeyRepeat GetRepeat(Uint32 Key, Uint8 ScanOrKey=Scancode);
-	bool IsRepeating(Uint32 Key, Uint8 ScanOrKey=Scancode);
 
 	/*
 	do Update BEFORE UpdateKey
