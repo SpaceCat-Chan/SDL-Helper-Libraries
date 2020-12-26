@@ -31,7 +31,7 @@ sfbuf::sfbuf(std::string Filename, std::string FileOptions) {
 	open(Filename, FileOptions);
 }
 
-sfbuf::~sfbuf() {
+sfbuf::~sfbuf() noexcept {
 		sync();
 		if(SDL_RWclose(m_File) == -1) {
 			//i dunno, something happened
